@@ -31,18 +31,22 @@ class Keyboard{
 
 	keyDown=(e)=>{
 		e.preventDefault();
-		this.key_map|=this.key_dir[e.key];
-		this.preview(String.fromCharCode(this.key_map));
-		this.firstUp = true
+		if(!e.repeat){
+			this.key_map|=this.key_dir[e.key];
+			this.preview(String.fromCharCode(this.key_map));
+			this.firstUp = true
+		}
 	}
 	
 	keyUp=(e)=>{
 		e.preventDefault();
-		if(this.firstUp){
-			this.firstUp = false;
-			this.write(String.fromCharCode(this.key_map));
+		if(!e.repeat){
+			if(this.firstUp){
+				this.firstUp = false;
+				this.write(String.fromCharCode(this.key_map));
+			}
+			this.key_map&=~this.key_dir[e.key];
+			this.preview(String.fromCharCode(this.key_map));
 		}
-		this.key_map&=~this.key_dir[e.key];
-		this.preview(String.fromCharCode(this.key_map));
 	}
 }
