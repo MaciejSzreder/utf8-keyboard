@@ -3,13 +3,14 @@
 <head>
 	<title>Editor</title>
 	<script src="utf8-keyboard.js" defer></script>
+	<script src="editor.js" defer></script>
 </head>
 <body>
 	<div id="preview"></div>
 	<textarea id="textarea"
 		autofocus
-		onkeydown="keyDown(...arguments)"
-		onkeyup="keyUp(...arguments)"
+		onkeydown="keyboard.keyDown(...arguments)"
+		onkeyup="keyboard.keyUp(...arguments)"
 	></textarea>
 </body>
 </html>
