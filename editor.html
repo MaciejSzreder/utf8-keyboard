@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Editor</title>
+</head>
+<body>
+	<textarea id="textarea"
+		autofocus
+		onkeydown="keyDown(...arguments)"
+		onkeyup="keyUp(...arguments)"
+	></textarea>
+</body>
+<script defer>
+	let textarea = document.getElementById`textarea`;
+	let key_map = 0;
+	var key_dir = {
+		a: 128,
+		s:  64,
+		d:  32,
+		f:  16,
+		j:   8,
+		k:   4,
+		l:   2,
+		';': 1,
+	};
+	function keyDown(e){
+		e.preventDefault();
+		key_map|=key_dir[e.key];
+		textarea.value = String.fromCharCode(key_map);
+	}
+	function keyUp(e){
+		e.preventDefault();
+		key_map&=~key_dir[e.key];
+		textarea.value = String.fromCharCode(key_map);
+	}
+</script>
+</html>
