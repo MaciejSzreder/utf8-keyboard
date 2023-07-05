@@ -1,1 +1,1 @@
-keyboard = new Keyboard();
+keyboard = new Keyboard(document.getElementById`textarea`);

@@ -12,7 +12,13 @@ class Keyboard{
 		';': 1,
 	};
 	firstUp = false;
-	textarea = document.getElementById`textarea`;
+	textarea = null;
+
+	constructor(textarea){
+		this.textarea = textarea;
+		textarea.addEventListener('keyup',this.keyUp);
+		textarea.addEventListener('keydown',this.keyDown);
+	}
 
 	preview(char){
 		textarea.value = this.text+char;
@@ -23,14 +29,14 @@ class Keyboard{
 		textarea.value = this.text;
 	}
 
-	keyDown(e){
+	keyDown=(e)=>{
 		e.preventDefault();
 		this.key_map|=this.key_dir[e.key];
 		this.preview(String.fromCharCode(this.key_map));
 		this.firstUp = true
 	}
 	
-	keyUp(e){
+	keyUp=(e)=>{
 		e.preventDefault();
 		if(this.firstUp){
 			this.firstUp = false;
