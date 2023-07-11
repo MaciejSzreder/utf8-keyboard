@@ -1,0 +1,1 @@
+new Keyboard(document.getElementById`workspace`);
