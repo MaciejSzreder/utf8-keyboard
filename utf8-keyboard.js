@@ -12,28 +12,15 @@ class Keyboard{
 		';': 1,
 	};
 	firstUp = false;
-	textarea = null;
 
-	constructor(textarea){
-		this.textarea = textarea;
-		textarea.addEventListener('keyup',this.keyUp);
-		textarea.addEventListener('keydown',this.keyDown);
-	}
-
-	preview(char){
-		this.textarea.value = this.text+char;
-	}
-
-	write(char){
-		this.text += char;
-		this.textarea.value = this.text;
-	}
+	#inputAction = ()=>{};
+	#changeAction = ()=>{};
 
 	keyDown=(e)=>{
 		e.preventDefault();
 		if(!e.repeat){
 			this.key_map|=this.key_dir[e.key];
-			this.preview(String.fromCharCode(this.key_map));
+			this.#changeAction(String.fromCharCode(this.key_map));
 			this.firstUp = true
 		}
 	}
@@ -43,10 +30,18 @@ class Keyboard{
 		if(!e.repeat){
 			if(this.firstUp){
 				this.firstUp = false;
-				this.write(String.fromCharCode(this.key_map));
+				this.#inputAction(String.fromCharCode(this.key_map));
 			}
 			this.key_map&=~this.key_dir[e.key];
-			this.preview(String.fromCharCode(this.key_map));
+			this.#changeAction(String.fromCharCode(this.key_map));
 		}
+	}
+
+	onInput(action){
+		this.#inputAction = action;
+	}
+
+	onChange(action){
+		this.#changeAction = action;
 	}
 }
