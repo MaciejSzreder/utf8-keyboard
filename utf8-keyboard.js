@@ -21,12 +21,12 @@ class Keyboard{
 	}
 
 	preview(char){
-		textarea.value = this.text+char;
+		this.textarea.value = this.text+char;
 	}
 
 	write(char){
 		this.text += char;
-		textarea.value = this.text;
+		this.textarea.value = this.text;
 	}
 
 	keyDown=(e)=>{
