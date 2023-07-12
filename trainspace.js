@@ -1,6 +1,7 @@
 class TrainSpace{
 	workspace = null;
 	target = null;
+	#completeAction = null;
 
 	constructor(workspace, target){
 		this.workspace = workspace;
@@ -12,7 +13,16 @@ class TrainSpace{
 	}
 	
 	onKeyUp(action){
-		this.workspace.onKeyUp(action);
+		this.workspace.onKeyUp((e)=>{
+			action(e);
+			if(this.workspace.text==this.target.get()){
+				this.#completeAction();
+			}
+		});
+	}
+
+	onComplete(action){
+		this.#completeAction = action;
 	}
 	
 	write=(char)=>{
@@ -24,6 +34,10 @@ class TrainSpace{
 	}
 
 	target(target){
-		this.target.set(target);
+		this.target.target(target);
+	}
+
+	clear(){
+		this.workspace.clear();
 	}
 }

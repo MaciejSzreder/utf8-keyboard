@@ -6,4 +6,8 @@ class Target{
 	set(target){
 		this.target.textContent = target;
 	}
+
+	get(){
+		return this.target.textContent;
+	}
 }

@@ -22,4 +22,9 @@ class Workspace{
 	onKeyUp(action){
 		this.textarea.addEventListener('keyup',action)
 	}
+
+	clear(){
+		this.text='';
+		this.textarea.value = this.text;
+	}
 }
