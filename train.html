@@ -8,12 +8,15 @@
 	<script src="trainspace.js" defer></script>
 	<script src="editor.js" defer></script>
 	<script src="train.js" defer></script>
+	<script src="lessons.js" defer></script>
 	<script src="train_setup.js" defer></script>
 </head>
 <body>
-	<div id="hint"></div>
+	<input id="char-set"
+		value="e taoinshrdlcumwfgypkbvjxqzETAOINSHRDLCUMWFGYPKBVJXQZ0123456789.,!?:;'&quot;%&*()-~`@#$^_+={}[]|\&lt;>?"
+	/>
 	<div>
-		<div id="target"></div>
+		<div><span id="target" style="white-space: pre; border: 1px solid" ></span></div>
 		<textarea id="workspace"
 			autofocus
 		></textarea>

@@ -20,7 +20,7 @@ class Train extends Editor{
 		this.workspace.onComplete(action);
 	}
 
-	next(){
+	next = ()=> {
 		this.lesson ??= this.lessons[Symbol.iterator]();
 		let {value:target} = this.lesson.next();
 		this.setTarget(target());
