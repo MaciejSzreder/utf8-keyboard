@@ -1,4 +1,6 @@
 class Train extends Editor{
+	lessons = [];
+	lesson = null;
 
 	constructor(trainSpace, keyboard){
 		super(trainSpace,keyboard);
@@ -9,11 +11,18 @@ class Train extends Editor{
 		this.workspace.target.set(target);
 	}
 
+	setLessons(lessons){
+		this.lessons = lessons;
+		this.next()
+	}
+
 	onComplete(action){
 		this.workspace.onComplete(action);
 	}
 
 	next(){
-		this.setTarget('bcd');
+		this.lesson ??= this.lessons[Symbol.iterator]();
+		let {value:target} = this.lesson.next();
+		this.setTarget(target());
 	}
 }

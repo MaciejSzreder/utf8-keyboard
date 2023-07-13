@@ -6,7 +6,12 @@ let keyboard = new Keyboard();
 
 let train = new Train(trainSpace, keyboard)
 
-train.setTarget('abc');
+train.setLessons([
+	()=>'a',
+	()=>'ab',
+	()=>'abc',
+	()=>'abcd',
+]);
 train.onComplete(()=>{
 	alert('completed');
 	train.next();
