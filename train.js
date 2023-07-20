@@ -1,14 +1,22 @@
 class Train extends Editor{
 	lessons = [];
 	lesson = null;
+	target = ()=>{};
 
-	constructor(trainSpace, keyboard){
+	hint = null;
+
+	constructor(trainSpace, keyboard, hint){
 		super(trainSpace,keyboard);
+		this.hint = hint;
 	}
 
 	setTarget(target){
 		this.workspace.clear();
 		this.workspace.target.set(target);
+	}
+
+	setHint(hint){
+		this.hint.set(hint);
 	}
 
 	setLessons(lessons){
@@ -20,9 +28,18 @@ class Train extends Editor{
 		this.workspace.onComplete(action);
 	}
 
-	next = ()=> {
+	onMistake(action){
+		this.workspace.onMistake(action);
+	}
+
+	next = ()=>{
 		this.lesson ??= this.lessons[Symbol.iterator]();
 		let {value:target} = this.lesson.next();
+		this.target = target;
 		this.setTarget(target());
+	}
+
+	retake = ()=>{
+		this.setTarget(this.target());
 	}
 }
