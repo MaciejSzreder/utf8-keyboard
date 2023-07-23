@@ -1,18 +1,17 @@
 class Workspace{
 	textarea = null;
-	text = '';
+	text = new Utf8;
 
 	constructor(textarea){
 		this.textarea = textarea;
 	}
 
 	preview=(char)=>{
-		this.textarea.value = this.text+char;
+		this.textarea.value = this.text.copy().putUtf8(char);
 	}
 
 	write=(char)=>{
-		this.text += char;
-		this.textarea.value = this.text;
+		this.textarea.value = this.text.putUtf8(char);
 	}
 
 	onKeyDown(action){
@@ -24,7 +23,7 @@ class Workspace{
 	}
 
 	clear(){
-		this.text='';
-		this.textarea.value = this.text;
+		this.text = new Utf8;
+		this.textarea.value = '';
 	}
 }

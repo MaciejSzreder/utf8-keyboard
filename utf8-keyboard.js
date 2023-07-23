@@ -28,8 +28,8 @@ class Keyboard{
 		e.preventDefault();
 		if(!e.repeat){
 			this.key_map|=this.key_dir[e.key];
-			this.#changeAction(String.fromCharCode(this.key_map));
-			this.firstUp = true
+			this.#changeAction(this.key_map);
+			this.firstUp = true;
 		}
 	}
 	
@@ -38,15 +38,17 @@ class Keyboard{
 		if(!e.repeat){
 			if(this.firstUp){
 				this.firstUp = false;
-				this.#inputAction(String.fromCharCode(this.key_map));
+				this.#inputAction(this.key_map);
 			}
 			this.key_map&=~this.key_dir[e.key];
-			this.#changeAction(String.fromCharCode(this.key_map));
+			this.#changeAction(this.key_map);
 		}
 	}
 
 	decode(char){
-		char = char.charCodeAt(char);
+		if(typeof char === 'string'){
+			char = char.charCodeAt(char);
+		}
 		let keys = [];
 		for(let i=1; i<char; i<<=1){
 			let v = i&char;
