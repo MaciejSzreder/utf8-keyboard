@@ -47,10 +47,10 @@ class Keyboard{
 
 	decode(char){
 		if(typeof char === 'string'){
-			char = char.charCodeAt(char);
+			char = char.charCodeAt(0);
 		}
 		let keys = [];
-		for(let i=1; i<char; i<<=1){
+		for(let i=1; i<=char; i<<=1){
 			let v = i&char;
 			if(v){
 				keys.push(this.value_dir[v]);
